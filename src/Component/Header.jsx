@@ -6,7 +6,6 @@ import { changeCurrency } from "../Redux/CurrencySlice";
 const Header = () => {
     const {appCurrency} = useSelector((state) => state.currency)
     const dispatch = useDispatch()
-    console.log("data is", appCurrency)
     return (
         <>
             <nav className="bg-black p-3 flex justify-around">
