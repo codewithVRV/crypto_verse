@@ -4,12 +4,10 @@ import { useSelector } from "react-redux";
 import { fetchCryptoById, fetchCryptoList } from "../../Repository/CryptoRepository";
 
 const CryptoTable = ({id}) => {
-    console.log("input from cryptoTable", id)
 
     const {appCurrency} = useSelector((state) => state.currency)
     const [page, setPage] = useState(1)
-    // const [searchCoin, setSearchCoin] = useState([])
-    // console.log("searchCoin", searchCoin)
+
     const [coins, setCoins] = useState([
         {
             id: "bitcoin",
@@ -24,14 +22,14 @@ const CryptoTable = ({id}) => {
 
     async function loadCryptos(appCurrency, page, id) {
         if(id) {
-            const result = await fetchCryptoById(id, appCurrency, true);
+            const result = await fetchCryptoById(id, appCurrency, );
             if(result.success) {
                 setCoins([result.data]);
             }
            
         }
         else{
-            let result = await   fetchCryptoList(appCurrency, page, true)
+            let result = await   fetchCryptoList(appCurrency, page, )
                setCoins(result.data)
            
         }
