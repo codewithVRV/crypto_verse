@@ -1,8 +1,10 @@
+import Banner from "../../Component/Banner/Banner";
 
 const Home = () => {
     return (
         <>
-            Home page analysis
+            {/* Home page analysis */}
+            <Banner />
         </>
     )
 }
