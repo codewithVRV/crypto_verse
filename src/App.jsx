@@ -1,15 +1,18 @@
-import Header from "./Component/Header";
+import { BrowserRouter } from "react-router-dom";
 
+import Header from "./Component/Header";
+import AllRoutes from "./Routes/AllRoutes";
 
 function App() {
 
   return (
 
-    <div>
+    <BrowserRouter>
       <Header />
-    </div>
+      <AllRoutes />
+    </BrowserRouter>
 
-  )
+  );
 }
 
 export default App;
