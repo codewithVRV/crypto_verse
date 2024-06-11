@@ -1,22 +1,45 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { fetchCryptoList } from "../../Repository/CryptoRepository";
+import { fetchCryptoById, fetchCryptoList } from "../../Repository/CryptoRepository";
 
-const CryptoTable = () => {
+const CryptoTable = ({id}) => {
+    console.log("input from cryptoTable", id)
 
     const {appCurrency} = useSelector((state) => state.currency)
     const [page, setPage] = useState(1)
-    const [coins, setCoins] = useState([])
+    // const [searchCoin, setSearchCoin] = useState([])
+    // console.log("searchCoin", searchCoin)
+    const [coins, setCoins] = useState([
+        {
+            id: "bitcoin",
+            symbol: "btc",
+            name: "Bitcoin",
+            image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
+            price_change_24h: 2.15,
+            current_price: 3033763,
+            market_cap: 59306241641610
+        }
+    ])
 
-    async function loadCryptos(appCurrency, page) {
-     let result = await   fetchCryptoList(appCurrency, page, )
-     console.log(result.success)
-        setCoins(result.data)
-    }
+    async function loadCryptos(appCurrency, page, id) {
+        if(id) {
+            const result = await fetchCryptoById(id, appCurrency, true);
+            if(result.success) {
+                setCoins([result.data]);
+            }
+           
+        }
+        else{
+            let result = await   fetchCryptoList(appCurrency, page, true)
+               setCoins(result.data)
+           
+        }
+    } 
+
     useEffect (() => {
-        loadCryptos(appCurrency, page)
-    }, [appCurrency, page])
+        loadCryptos(appCurrency, page, id)
+    }, [appCurrency, page, id])
     return (
         <div className="my-5 flex flex-col items-center justify-center gap-5 w-[80vw] mx-auto">
             <div className="w-full bg-yellow-400 text-black flex py-4 px-2 font-semibold items-center justify-between">
@@ -27,7 +50,7 @@ const CryptoTable = () => {
                 </div>
 
                 <div className="basis-[25%]">
-                    Price
+                    Price in {appCurrency}
                 </div>
 
                 <div className="basis-[20%]">

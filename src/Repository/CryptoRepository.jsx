@@ -2,7 +2,31 @@
 
 import axios from "axios";
 
-
+export const fetchCryptoById = async (id, appCurrency, flag = false) => {
+    try {
+        if(!flag) return;
+        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${id}`);
+        console.log(response.data)
+        return {
+            success: true,
+            data:  {
+                id: response.data.id,
+                name: response.data.name,
+                symbol: response.data.symbol,
+                image: response.data.image.small,
+                price_change_24h: 0,
+                current_price: response.data.market_data.current_price[appCurrency.toLowerCase()],
+                market_cap: response.data.market_data.market_cap[appCurrency.toLowerCase()]
+            }
+        }
+    } catch(error) {
+        console.log(error);
+        return {
+            success: false,
+            data: []
+        };
+    }   
+};
 
 
 
