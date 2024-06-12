@@ -31,7 +31,7 @@ const CryptoTable = ({id}) => {
         }
         else{
             let result = await   fetchCryptoList(appCurrency, page, true)
-               setCoins(result.data)
+               setCoins(result?.data)
            
         }
     } 
@@ -64,7 +64,7 @@ const CryptoTable = ({id}) => {
 
             <div className="flex flex-col w-[80vw] mx-auto">
                 {
-                    coins.map((coin) => {
+                    coins?.map((coin) => {
                         return (
                             <Link className="cursor-pointer" to={`coin/${coin.id}`} key={coin.id}>
                                 <div  className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between ">

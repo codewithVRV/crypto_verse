@@ -16,11 +16,10 @@ const ReactCarousel = () => {
 
     const loadCoins = async () => {
         const response = await fetchCryptoList(appCurrency, 1, false)
-        console.log(response.data)
-        setCoins(response.data)
+        setCoins(response?.data)
     }
 
-    const items = coins.map((coin) => {
+    const items = coins?.map((coin) => {
         return (
             <Link to={`/coin/${coin.id}`} key={coin.id}>
             <div className="felx gap-2" >
