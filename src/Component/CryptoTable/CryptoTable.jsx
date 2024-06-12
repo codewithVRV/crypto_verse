@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import {Link} from "react-router-dom"
 
 import { fetchCryptoById, fetchCryptoList } from "../../Repository/CryptoRepository";
 
@@ -22,14 +23,14 @@ const CryptoTable = ({id}) => {
 
     async function loadCryptos(appCurrency, page, id) {
         if(id) {
-            const result = await fetchCryptoById(id, appCurrency, );
+            const result = await fetchCryptoById(id, appCurrency,);
             if(result.success) {
                 setCoins([result.data]);
             }
            
         }
         else{
-            let result = await   fetchCryptoList(appCurrency, page, )
+            let result = await   fetchCryptoList(appCurrency, page, true)
                setCoins(result.data)
            
         }
@@ -65,7 +66,8 @@ const CryptoTable = ({id}) => {
                 {
                     coins.map((coin) => {
                         return (
-                            <div key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between ">
+                            <Link className="cursor-pointer" to={`coin/${coin.id}`} key={coin.id}>
+                                <div  className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between ">
                                 <div className="flex items-center justify-start gap-3 basis-[35%]">
                                     <div className="w-[5rem] h[5rem]">
                                         <img src={coin.image} className="w-full h-full" />
@@ -86,14 +88,21 @@ const CryptoTable = ({id}) => {
                                     {coin.market_cap}
                                 </div>
                             </div>
+                            </Link>
                         );
                     })
                 }
             </div>
 
             <div className="flex gap-4 justify-center items-center">
-                <button onClick={() => setPage((page) => page-1)} className="btn btn-primary btn-wide text-white text-2xl" disabled={page == 1}>Prev</button>
-                <button onClick={() => setPage((page) => page+1)} className="btn btn-secondary btn-wide text-white text-2xl">Next</button>
+                <button onClick={() => {
+                    setPage((page) => page-1)
+                    window.scroll(0, 450)
+                }} className="btn btn-primary btn-wide text-white text-2xl" disabled={page == 1}>Prev</button>
+                <button onClick={() => {
+                    setPage((page) => page+1)
+                    window.scroll(0, 450)
+                }} className="btn btn-secondary btn-wide text-white text-2xl">Next</button>
             </div>
         </div>
     )

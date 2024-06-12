@@ -14,9 +14,12 @@ export const fetchCryptoById = async (id, appCurrency, flag = false) => {
                 name: response.data.name,
                 symbol: response.data.symbol,
                 image: response.data.image.small,
+                secondImage: response.data.image.large,
                 price_change_24h: 0,
                 current_price: response.data.market_data.current_price[appCurrency.toLowerCase()],
-                market_cap: response.data.market_data.market_cap[appCurrency.toLowerCase()]
+                market_cap: response.data.market_data.market_cap[appCurrency.toLowerCase()],
+                description:response.data.description.en.split(".")[0],
+                rank: response.data.market_cap_rank
             }
         }
     } catch(error) {
