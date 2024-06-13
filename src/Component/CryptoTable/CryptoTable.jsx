@@ -48,7 +48,7 @@ const CryptoTable = ({id}) => {
                     Coin
                 </div>
 
-                <div className="basis-[35%]">
+                <div className="md:basis-[35%]">
                     Price in {appCurrency}
                 </div>
 
