@@ -1,4 +1,3 @@
-// import axiosInstance from "../Config/axiosInstance"
 
 import axios from "axios";
 
@@ -6,7 +5,6 @@ export const fetchCryptoById = async (id, appCurrency, flag = false) => {
     try {
         if(!flag) return;
         const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${id}`);
-        // console.log(response.data)
         return {
             success: true,
             data:  {
@@ -21,7 +19,7 @@ export const fetchCryptoById = async (id, appCurrency, flag = false) => {
                 description:response?.data?.description?.en?.split(".")[0],
                 rank: response?.data?.market_cap_rank
             }
-        }
+        };
     } catch(error) {
         console.log(error);
         return {
@@ -48,9 +46,9 @@ export const fetchCryptoList = async (appCurrency, page, flag = false) => {
                     market_cap: coin.market_cap,
                     current_price: coin.current_price,
                     price_change_24h: coin.price_change_24h,
-                }
+                };
             })
-        }
+        };
     } catch(error) {
         console.log(error);
         return {

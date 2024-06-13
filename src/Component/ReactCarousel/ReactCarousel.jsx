@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import { useSelector } from "react-redux";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 
 import { fetchCryptoList } from "../../Repository/CryptoRepository";
 
@@ -10,19 +10,19 @@ import { fetchCryptoList } from "../../Repository/CryptoRepository";
 const ReactCarousel = () => {
 
     const {appCurrency} = useSelector((state) => state.currency);
-    const [coins, setCoins] = useState([])
+    const [coins, setCoins] = useState([]);
     // const [count, setcount] = useState(0)
 
 
     const loadCoins = async () => {
-        const response = await fetchCryptoList(appCurrency, 1, false)
-        setCoins(response?.data)
-    }
+        const response = await fetchCryptoList(appCurrency, 1, );
+        setCoins(response?.data);
+    };
 
     const items = coins?.map((coin) => {
         return (
             <Link to={`/coin/${coin.id}`} key={coin.id}>
-            <div className="felx gap-2" >
+            <div className="felx gap-2 mt-4" >
                 <img className="h-28 w-28" src={coin.image} alt="Coin"/>
                 <div className="mt-1 font-semibold">{coin.name}
                     &nbsp; &nbsp; 
@@ -31,12 +31,12 @@ const ReactCarousel = () => {
                 </div>
             </div>
             </Link>
-        )
-    })
+        );
+    });
 
     useEffect(() => {
-        loadCoins()
-    }, [])
+        loadCoins();
+    }, []);
 
     const responsive = {
         0: {
@@ -45,7 +45,7 @@ const ReactCarousel = () => {
         512:{
             items: 4
         }
-    }
+    };
 
     return (
         <>
@@ -63,7 +63,7 @@ const ReactCarousel = () => {
 
             />
         </>
-    )
-}
+    );
+};
 
 export default ReactCarousel;

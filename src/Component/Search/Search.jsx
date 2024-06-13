@@ -16,13 +16,13 @@ const Search = ({setSearchText}) => {
                 className="block w-full border py-4 px-4 bg-transparent text-white"
                 placeholder="Search for crypto"
                 onChange={(e) => {
-                    setValue(e.target.value)
-                    debounced(e.target.value)
+                    setValue(e.target.value);
+                    debounced(e.target.value);
                 }}
                 value={value}
             />
         </div>
     );
-}
+};
 
 export default Search;
