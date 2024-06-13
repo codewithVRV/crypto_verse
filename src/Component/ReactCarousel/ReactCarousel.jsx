@@ -15,7 +15,7 @@ const ReactCarousel = () => {
 
 
     const loadCoins = async () => {
-        const response = await fetchCryptoList(appCurrency, 1, );
+        const response = await fetchCryptoList(appCurrency, 1, true);
         setCoins(response?.data);
     };
 
@@ -27,7 +27,7 @@ const ReactCarousel = () => {
                 <div className="mt-1 font-semibold">{coin.name}
                     &nbsp; &nbsp; 
                 <span className="text-red-400">({coin.symbol})</span>
-                <div className="font-bold text-lg">Price:- {coin.current_price}</div>
+                <div className="font-bold text-lg">Price:- {coin.current_price} {appCurrency === "INR" ? "₹" : "$"}</div>
                 </div>
             </div>
             </Link>

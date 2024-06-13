@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ArcElement, CategoryScale, Chart, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from 'chart.js';
+import { ArcElement, CategoryScale,  Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from 'chart.js';
 import parse from 'html-react-parser';
 import { useEffect, useState } from 'react';
 import {  Line } from 'react-chartjs-2';
@@ -169,8 +169,8 @@ const CoinDetails = () => {
                     {parse(coinData.description + "")}
                 </p>
                 <div className="text-2xl font-bold">Rank : {coinData.rank}</div>
-                <div className="text-2xl font-bold">Current Price : {coinData.current_price}</div>
-                <div className="text-2xl font-bold">Market Cap : {coinData.market_cap}</div>
+                <div className="text-2xl font-bold">Current Price : {coinData.current_price} {appCurrency === "INR" ? "₹" : "$"}</div>
+                <div className="text-2xl font-bold">Market Cap : {coinData.market_cap} {appCurrency === "INR" ? "₹" : "$"}</div>
             </div>
 
             {/* Chart */}
@@ -179,7 +179,7 @@ const CoinDetails = () => {
                     <h1 className="text-5xl mt-2 text-center">Loading Chart...</h1>
                 ) : (
                     <div>
-                        <div className=" w-[25rem] bg-red-300 lg:w-[45rem] h-[20rem] lg:h-[30rem] mt-12">
+                        <div className=" w-[25rem]  lg:w-[45rem] h-[20rem] lg:h-[30rem] mt-12">
                             <Line data={lineChart} options={options} height={400} />
                             <div className='flex gap-4 justify-center mt-4'>
                                 <button onClick={() => setDays(1)} className="bg-yellow-500  mb-8 text-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-600 transition duration-300">

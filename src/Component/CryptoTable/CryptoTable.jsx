@@ -79,13 +79,13 @@ const CryptoTable = ({id}) => {
                                     </div>
                                 </div>
                                 <div className="text-sm basis-[25%]">
-                                    {coin.current_price}
+                                    {coin.current_price} {appCurrency === "INR" ? "₹" : "$"}
                                 </div>
                                 <div className="hidden md:block basis-[20%]">
-                                    {coin.price_change_24h}
+                                    {coin.price_change_24h} {appCurrency === "INR" ? "₹" : "$"}
                                 </div>
                                 <div className="text-sm basis-[20%]">
-                                    {coin.market_cap}
+                                    {coin.market_cap} {appCurrency === "INR" ? "₹" : "$"}
                                 </div>
                             </div>
                             </Link>
